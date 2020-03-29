@@ -30,8 +30,8 @@ class Gate(models.Model):
 class AttendanceHistory(models.Model):
     person_id = models.ForeignKey('Person', on_delete=models.CASCADE)
     gate_id = models.ForeignKey('Gate', on_delete=models.CASCADE)
-    entry_date = models.DateField(blank=True, null=True)
-    exit_date = models.DateField(blank=True, null=True)
+    entry_date = models.DateTimeField(blank=True, null=True)
+    exit_date = models.DateTimeField(blank=True, null=True)
 
     def add_exit_date(self, exit_date=None):
         if exit_date:
