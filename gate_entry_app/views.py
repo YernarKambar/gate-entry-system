@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def people_list(request):
+    return render(request, 'gate_entry_app/hello.html', {})
