@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gate entry system</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/people_list.css' %}">
+</head>
+<body>
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for person in people %}
+                <div class="post">
+                    <div class="date">
+                        <p>{{ person.id }}</p>
+                    </div>
+                    <h1><a href="{% url 'attendance_history' pk=person.pk %}">{{ person }}</a></h1>
+                    <p>{{ person.role }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

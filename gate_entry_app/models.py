@@ -11,6 +11,10 @@ class Person(models.Model):
     def __str__(self):
         return "%s %s" % (self.first_name, self.last_name)
 
+    class Meta:
+        verbose_name = "Person"
+        verbose_name_plural = "People"
+
 
 class Role(models.Model):
     role_name = models.CharField(max_length=30)
@@ -28,10 +32,13 @@ class Gate(models.Model):
 
 
 class AttendanceHistory(models.Model):
-    person_id = models.ForeignKey('Person', on_delete=models.CASCADE)
-    gate_id = models.ForeignKey('Gate', on_delete=models.CASCADE)
+    person = models.ForeignKey('Person', on_delete=models.CASCADE)
+    gate = models.ForeignKey('Gate', on_delete=models.CASCADE)
     entry_date = models.DateTimeField(blank=True, null=True)
     exit_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.person
 
     def add_exit_date(self, exit_date=None):
         if exit_date:
@@ -46,3 +53,7 @@ class AttendanceHistory(models.Model):
         else:
             self.entry_date = timezone.now()
         self.save()
+
+    class Meta:
+        verbose_name = "Attendance history"
+        verbose_name_plural = "Attendance history"

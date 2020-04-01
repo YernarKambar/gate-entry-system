@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'login/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'login/images/logo.png' %}" alt="IMG">
+				</div>
+				<form class="login100-form validate-form" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+					<span class="login100-form-title">
+						Member Login
+					</span>
+					<div class="wrap-input100 validate-input" data-validate = "Username is required" >
+						<input class="input100" type="text" name="username" placeholder="Username" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+                    {% if form.errors %}
+                        <p style="color: red">Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+					<div class="container-login100-form-btn">
+                        <input type="hidden" name="next" value="{{ next }}" />
+						<button type="submit" value="login" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<!--===============================================================================================-->
+	<!-- for check validation of username and password -->
+	<script src="{% static 'login/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<!-- for animate logo -->
+	<script src="{% static 'login/vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<!-- for zooming logo -->
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'login/js/main.js' %}"></script>
+</body>
+</html>
