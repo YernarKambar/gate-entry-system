@@ -38,7 +38,7 @@ class AttendanceHistory(models.Model):
     exit_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return self.person
+        return self.person.__str__() + ' ' + str(self.person.id)
 
     def add_exit_date(self, exit_date=None):
         if exit_date:
