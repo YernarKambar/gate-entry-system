@@ -2,29 +2,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Gate entry system</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/people_list.css' %}">
+	<title>People list</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'people_list/images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'people_list/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+<!--===============================================================================================-->
+<!-- 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"> -->
+<!--===============================================================================================-->
+<!-- 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"> -->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'people_list/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+<!-- 	<link rel="stylesheet" type="text/css" href="css/util.css">
+ -->	<link rel="stylesheet" type="text/css" href="{% static 'people_list/css/main.css' %}">
+<!--===============================================================================================-->
 </head>
 <body>
 
-<div class="content container">
-    <div class="row">
-        <div class="col-md-8">
-            {% for person in people %}
-                <div class="post">
-                    <div class="date">
-                        <p>{{ person.id }}</p>
-                    </div>
-                    <h1><a href="{% url 'attendance_history' pk=person.pk %}">{{ person }}</a></h1>
-                    <p>{{ person.role }}</p>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver5 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Full Name</th>
+									<th class="cell100 column2">Role</th>
+									<th class="cell100 column3">Gender</th>
+									<th class="cell100 column4">Email</th>
+									<th class="cell100 column5">Phone Number</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+                            {% for person in people %}
+								<tr class="row100 body">
+										<td class="cell100 column1"><a href=href="{% url 'attendance_history' pk=person.pk %}">Yesdaulet Yersultan</a></td>
+										<td class="cell100 column2">Data Scientist</td>
+										<td class="cell100 column3">Male</td>
+										<td class="cell100 column4">yersultan.u@gmail.com</td>
+										<td class="cell100 column5">+77077470794</td>
+								</tr>
+                            {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--===============================================================================================-->
+	<script src="{% static 'people_list/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'people_list/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'people_list/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'people_list/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'people_list/vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
 
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'people_list/js/main.js' %}"></script>
 </body>
 </html>
