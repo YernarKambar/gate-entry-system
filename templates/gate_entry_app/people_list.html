@@ -46,10 +46,10 @@
 							<tbody>
                             {% for person in people %}
 								<tr class="row100 body">
-										<td class="cell100 column1"><a href=href="{% url 'attendance_history' pk=person.pk %}">Yesdaulet Yersultan</a></td>
-										<td class="cell100 column2">Data Scientist</td>
+										<td class="cell100 column1"><a href="{% url 'attendance_history' pk=person.pk %}">{{ person }}</a></td>
+										<td class="cell100 column2">{{ person.role }}</td>
 										<td class="cell100 column3">Male</td>
-										<td class="cell100 column4">yersultan.u@gmail.com</td>
+										<td class="cell100 column4">mail@gmail.com</td>
 										<td class="cell100 column5">+77077470794</td>
 								</tr>
                             {% endfor %}
