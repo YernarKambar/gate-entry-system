@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,4 +9,14 @@
 <div>{{ person }}</div>
 <div>{{ person.role }}</div>
 </body>
+<div id="dashboard">
+    <div id="chart_div"></div>
+    <div id="control_div"></div>
+<p><span id='dbgchart'></span></p>
+</div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src='{% static 'attendance_history/js/main.js' %}'></script>
+<script>
+    MainFunction({{ attendance_list }})
+</script>
 </html>
