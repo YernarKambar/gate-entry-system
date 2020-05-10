@@ -9,7 +9,7 @@ class Person(models.Model):
     role = models.ForeignKey('Role', on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s %s" % (self.first_name, self.last_name)
+        return "%s %s id-%s" % (self.first_name, self.last_name, self.id)
 
     class Meta:
         verbose_name = "Person"
@@ -38,7 +38,7 @@ class AttendanceHistory(models.Model):
     exit_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return self.person.__str__() + ' ' + str(self.person.id)
+        return self.person.__str__() + ' ' + self.gate.__str__()
 
     def add_exit_date(self, exit_date=None):
         if exit_date:
@@ -57,3 +57,12 @@ class AttendanceHistory(models.Model):
     class Meta:
         verbose_name = "Attendance history"
         verbose_name_plural = "Attendance history"
+
+
+class Device(models.Model):
+    device_name = models.CharField(max_length=30)
+    gate = models.ForeignKey('Gate', on_delete=models.CASCADE)
+    is_entry_device = models.BooleanField(default=True)
+
+    def __str__(self):
+        return "%s-%s" % (self.device_name, self.gate)

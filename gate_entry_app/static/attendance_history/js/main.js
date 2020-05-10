@@ -46,8 +46,20 @@ function MainFunction(attendance_list) {
         dash.bind([control], [chart]);
         dash.draw(data);
         google.visualization.events.addListener(control, 'statechange', function () {
-            var v = control.getState();
-            document.getElementById('dbgchart').innerHTML = v.range.start + ' to ' + v.range.end;
+            const controlState = control.getState();
+            const filteredResults = data.getFilteredRows([{
+              column: 0,
+              minValue: controlState.range.start,
+              maxValue: controlState.range.end
+            }]);
+
+            let totalValue = 0;
+            for (let i  = 0; i < filteredResults.length; i++) {
+              totalValue += data.getValue(filteredResults[i], 1);
+            }
+
+            document.getElementById('total_work_amount').textContent = totalValue;
+            document.getElementById('dbgchart').innerHTML = controlState.range.start+ ' to ' +controlState.range.end;
             return 0;
         });
     }
